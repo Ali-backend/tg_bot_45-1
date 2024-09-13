@@ -1,6 +1,7 @@
 from config import bot,dp
 from aiogram import types, Dispatcher
 
+
 async def start(message: types.Message):
     await bot.send_message(chat_id=message.from_user.id,
                            text=f'HELLO! {message.from_user.first_name}')
@@ -8,3 +9,6 @@ async def start(message: types.Message):
 
 def register_start(dp: Dispatcher):
     dp.register_message_handler(start, commands=['start'])
+
+
+
