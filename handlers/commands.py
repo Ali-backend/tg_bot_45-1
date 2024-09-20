@@ -6,6 +6,7 @@ from aiogram import types, Dispatcher
 
 
 
+
 async def start_handler(message: types.Message):
     await bot.send_message(chat_id=message.from_user.id, text='Hello!',
                            reply_markup=start)
@@ -38,7 +39,7 @@ async def mem_all_handler(message: types.Message):
 async def music_handler(message: types.Message):
     folder = 'musics'
 
-    music_name = 'track_2.mp3'
+    music_name = 'trac_1'
 
     music_path = os.path.join(folder, music_name)
 

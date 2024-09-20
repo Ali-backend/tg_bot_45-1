@@ -7,7 +7,6 @@ from config import dp, bot, Admins
 from db import db_main
 
 
-
 async def on_startup(_):
     for admin in Admins:
         await bot.send_message(chat_id=admin, text="Бот включен!")
@@ -18,9 +17,6 @@ async def on_shutdown(_):
     for admin in Admins:
         await bot.send_message(chat_id=admin, text="Бот отключен!")
 
-
-async def on_startup():
-    await db_main.sql_create()
 
 commands.register_commands(dp)
 quiz.register_quiz(dp)
@@ -33,4 +29,5 @@ echo.register_echo(dp)
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)
-    executor.start_polling(dp, skip_updates=True,)
+    executor.start_polling(dp, skip_updates=True,
+                           on_startup=on_startup, on_shutdown=on_shutdown)

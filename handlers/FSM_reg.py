@@ -144,4 +144,3 @@ def register_fsm_reg(dp: Dispatcher):
     dp.register_message_handler(submit,
                                 state=fsm_registration.submit)
 
-

@@ -17,14 +17,33 @@ INSERT_PRODUCTS = """
 """
 
 
-CREATE_TABLE_PRODUCTS="""
-CREATE TABLE IF NOT EXISTS product_detail(
-id INTEGER PRIMARY KEY AUTOINCREMENT,
-product INTEGER,
-category VARCHAR(255),
-info_product TEXT
-)"""
+CREATE_TABLE_PRODUCTS_DETAIL = """
+    CREATE TABLE IF NOT EXISTS products_detail
+    (
+    id INTEGER PRIMARY KEY AUTOINCREMENT, 
+    product_id VARCHAR(255),
+    category VARCHAR(255),
+    info_product VARCHAR(255)
+    )
+"""
+
+INSERT_PRODUCTS_DETAIL = """
+    INSERT INTO products_detail (product_id, category, info_product)
+    VALUES (?, ?, ?)
+"""
+
+CREATE_COLLECTION_PRODUCTS = """
+    CREATE TABLE IF NOT EXISTS collection_products (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    productid INTEGER,
+    collection VARCHAR(255),
+    FOREIGN KEY (productid) REFERENCES products (product_id)
+    )
+"""
+
+INSERT_COLLECTION_PRODUCTS = """
+    INSERT INTO collection_products (productid, collection)
+    VALUES (?, ?)
+"""
 
 
-INSERT_INTO_PRODUCT_DETAIL="""
-INSERT INTO product_detail (product, category, info_product) VALUES (?, ?, ?)"""
