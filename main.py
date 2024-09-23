@@ -1,33 +1,29 @@
 import logging
-
-from aiogram import Dispatcher
 from aiogram.utils import executor
-from handlers import commands, echo, quiz, FSM_reg, fsm_store
-from config import dp, bot, Admins
+from config import bot, dp, admin
+from handlers import commands, echo, quiz, FSM_reg, fsm_store, webapp, admin_group
 from db import db_main
 
 
 async def on_startup(_):
-    for admin in Admins:
-        await bot.send_message(chat_id=admin, text="Бот включен!")
+    for i in admin:
+        await bot.send_message(chat_id=i, text="Бот включен!",
+                               )
         await db_main.sql_create()
-
-
-async def on_shutdown(_):
-    for admin in Admins:
-        await bot.send_message(chat_id=admin, text="Бот отключен!")
 
 
 commands.register_commands(dp)
 quiz.register_quiz(dp)
 FSM_reg.register_fsm_reg(dp)
 fsm_store.register_store(dp)
+webapp.register_handlers_webapp(dp)
 
 
-echo.register_echo(dp)
+admin_group.register_admin_group(dp)
+# echo.register_echo(dp)
+
 
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)
-    executor.start_polling(dp, skip_updates=True,
-                           on_startup=on_startup, on_shutdown=on_shutdown)
+    executor.start_polling(dp, skip_updates=True, on_startup=on_startup)

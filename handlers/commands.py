@@ -47,9 +47,29 @@ async def music_handler(message: types.Message):
         await message.answer_audio(InputFile(music))
 
 
+
+
+
+
+async def pin_message(message: types.Message):
+
+    if message.chat.type not in ['group']:
+        await message.reply("Эта команда доступна только в группах")
+
+
+    if message.reply_to_message:
+        await bot.pin_chat_message(message.chat.id, message.reply_to_message.message_id)
+        await message.reply("Сообщение закреплено!")
+    else:
+        await message.reply("Пожалуйста, ответьте на сообщение, которое хотите закрепить.")
+
+
+
 def register_commands(dp: Dispatcher):
     dp.register_message_handler(start_handler, commands=['start'])
     dp.register_message_handler(info_handler, commands=['info'])
     dp.register_message_handler(mem_handler, commands=['mem'])
     dp.register_message_handler(mem_all_handler, commands=['mem_all'])
     dp.register_message_handler(music_handler, commands=['music'])
+    dp.message_handler(commands=['pin'])
+
