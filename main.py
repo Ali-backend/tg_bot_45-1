@@ -1,7 +1,7 @@
 import logging
 from aiogram.utils import executor
 from config import bot, dp, admin
-from handlers import commands, echo, quiz, FSM_reg, fsm_store, webapp, admin_group
+from handlers import commands, echo, quiz, FSM_reg, fsm_store, webapp, admin_group, group
 from db import db_main
 
 
@@ -17,6 +17,7 @@ quiz.register_quiz(dp)
 FSM_reg.register_fsm_reg(dp)
 fsm_store.register_store(dp)
 webapp.register_handlers_webapp(dp)
+group.register_group(dp)
 
 
 admin_group.register_admin_group(dp)
