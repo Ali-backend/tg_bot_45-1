@@ -15,4 +15,4 @@ async def pin(message: types.Message):
         await message.answer('только в группе')
 
 def register_group(dp: Dispatcher):
-    dp.register_message_handler(pin, text='pin')
+    dp.register_message_handler(pin, text='!pin')

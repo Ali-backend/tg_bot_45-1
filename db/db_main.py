@@ -29,7 +29,11 @@ async def sql_insert_products(name_products, size, price, product_id, photo):
     with sqlite3.connect('db/store.sqlite3') as db:
         cursor = db.cursor()
         cursor.execute(queries.INSERT_PRODUCTS, (
-            name_products, size, price, product_id, photo
+            name_products,
+            size,
+            price,
+            product_id,
+            photo
         ))
         db.commit()
 
@@ -44,12 +48,12 @@ async def sql_insert_products_detail(product_id, category, info_product):
         ))
         db.commit()
 
-async def sql_insert_collection_products(product_id, productid, collection):
+async def sql_insert_collection_products(product_id, collection):
     with sqlite3.connect('db/store.sqlite3') as db:
         cursor = db.cursor()
         cursor.execute(queries.INSERT_COLLECTION_PRODUCTS(
             product_id,
-            productid,
+
             collection
         ))
         db.commit()
