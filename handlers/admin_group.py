@@ -1,5 +1,5 @@
 from aiogram import types, Dispatcher
-from config import bot, admin
+from config import bot, staff
 
 
 async def welcome_user(message: types.Message):
@@ -36,7 +36,7 @@ async def user_warning(message: types.Message):
             user_name = message.reply_to_message.from_user.full_name
             user_warnings[user_id] = user_warnings.get(user_id, 0) + 1
 
-            for Admin in admin:
+            for Admin in staff:
                 await bot.send_message(chat_id=Admin,
                                        text=f"{user_name} получил предупреждение ({user_warnings[user_id]}/3)")
 

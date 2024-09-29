@@ -1,6 +1,7 @@
 from aiogram import Bot, Dispatcher
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from decouple import config
+from config import  staff
 
 TOKEN = config("TOKEN")
 
@@ -9,4 +10,4 @@ storage = MemoryStorage()
 bot = Bot(token=TOKEN)
 dp = Dispatcher(bot=bot, storage=storage)
 
-admin = [1687464179, ]
+staff = [1687464179, ]

@@ -43,7 +43,7 @@ async def music_handler(message: types.Message):
 
     music_path = os.path.join(folder, music_name)
 
-    with open(music_path, 'rb') as music:
+    with open(music_path, 'rb') as music:product_detail
         await message.answer_audio(InputFile(music))
 
 
